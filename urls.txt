@@ -1,0 +1,10 @@
+http://localhost/personal-blog/
+http://localhost/personal-blog/register.php
+
+
+When logged in 
+http://localhost/personal-blog/add-post.php
+http://localhost/personal-blog/manage-posts.php
+http://localhost/personal-blog/edit-profile.php
+http://localhost/personal-blog/update-password.php
+http://localhost/personal-blog/logout.php
