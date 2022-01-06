@@ -11,10 +11,10 @@ if (strlen($_SESSION['alogin']) == 0) {
         $grabber = $_POST['grabber'];
         $description = $_POST['description'];
 
-        $sql = "INSERT INTO posts(title,category,grabber,description) VALUES(:title,:cat,:grabber,:description)";
+        $sql = "INSERT INTO posts(title,grabber,description) VALUES(:title,:grabber,:description)";
         $query = $dbh->prepare($sql);
         $query->bindParam(':title', $title, PDO::PARAM_STR);
-        $query->bindParam(':cat', $cat, PDO::PARAM_STR);
+        // $query->bindParam(':cat', $cat, PDO::PARAM_STR);
         $query->bindParam(':grabber', $grabber, PDO::PARAM_STR);
         $query->bindParam(':description', $description, PDO::PARAM_STR);
 
@@ -94,31 +94,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-row">
-                                                        <div class="col-md-8 col-lg-6 col-xl-6">
-                                                            <div class="form-group">
-                                                                <label for="select1"><strong>Select
-                                                                                             Category</strong></label>
-                                                                <select class="form-control" id="select1"
-                                                                        name="selectcat" required>
-                                                                    <option value="">-- Select --</option>
-                                                                    <?php $ret = "SELECT `id`,`catname` FROM `categories`";
-                                                                    $query = $dbh->prepare($ret);
-                                                                    //$query->bindParam(':id',$id, PDO::PARAM_STR);
-                                                                    $query->execute();
-                                                                    $results = $query->fetchAll(PDO::FETCH_OBJ);
-                                                                    if ($query->rowCount() > 0) {
-                                                                        foreach ($results as $result) {
-                                                                            ?>
-                                                                            <option value="<?php echo htmlentities($result->id); ?>">
-                                                                                <?php echo htmlentities($result->catname); ?>
-                                                                            </option>
-                                                                        <?php }
-                                                                    } ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
 
                                                     <div class="form-row">
                                                         <div class="col-md-8 col-lg-6 col-xl-6">

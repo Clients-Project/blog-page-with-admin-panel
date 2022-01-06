@@ -12,7 +12,7 @@ if (strlen($_SESSION['login']) == 0) {
 
         $email = $_SESSION['login'];
 
-        $sql = "SELECT `password` FROM `users` WHERE email=:email AND password=:password";
+        $sql = "SELECT `password` FROM `admin` WHERE email=:email AND password=:password";
         $query = $dbh->prepare($sql);
         $query->bindParam(':email', $email, PDO::PARAM_STR);
         $query->bindParam(':password', $password, PDO::PARAM_STR);
@@ -20,7 +20,7 @@ if (strlen($_SESSION['login']) == 0) {
         $results = $query->fetchAll(PDO::FETCH_OBJ);
 
         if ($query->rowCount() > 0) {
-            $con = "UPDATE `users` SET password=:newpassword WHERE email=:email";
+            $con = "UPDATE `admin` SET password=:newpassword WHERE email=:email";
             $chngpwd1 = $dbh->prepare($con);
             $chngpwd1->bindParam(':email', $email, PDO::PARAM_STR);
             $chngpwd1->bindParam(':newpassword', $newpassword, PDO::PARAM_STR);

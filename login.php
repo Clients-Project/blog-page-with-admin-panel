@@ -9,7 +9,7 @@ if (!empty($_SESSION['login'])) {
         $email = $_POST['email'];
         $password = md5($_POST['password']);
         $status = 1;
-        $sql = "SELECT email,password FROM users WHERE email=:email AND password=:password AND status=:status";
+        $sql = "SELECT email,password FROM admin WHERE email=:email AND password=:password AND status=:status";
         $query = $dbh->prepare($sql);
         $query->bindParam(':email', $email, PDO::PARAM_STR);
         $query->bindParam(':password', $password, PDO::PARAM_STR);

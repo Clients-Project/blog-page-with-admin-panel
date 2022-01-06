@@ -50,7 +50,7 @@ if (strlen($_SESSION['login']) == 0) {
                                     <tr>
                                         <th>#</th>
                                         <th>Title</th>
-                                        <th>Category</th>
+                                        <!-- <th>Category</th> -->
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
@@ -73,10 +73,11 @@ if (strlen($_SESSION['login']) == 0) {
                                     }
 
                                     $status = 1;
-                                    $sql = "SELECT title,posts.id,catname FROM posts, categories WHERE categories.id=posts.category AND posts.userid=:uid AND posts.status=:status";
+                                    // $sql = "SELECT title,posts.id,catname FROM posts, categories WHERE categories.id=posts.category AND posts.userid=:uid AND posts.status=:status";
+                                    $sql = "SELECT * FROM posts";
                                     $query = $dbh->prepare($sql);
-                                    $query->bindParam(':uid', $uid, PDO::PARAM_STR);
-                                    $query->bindParam(':status', $status, PDO::PARAM_STR);
+                                    // $query->bindParam(':uid', $uid, PDO::PARAM_STR);
+                                    // $query->bindParam(':status', $status, PDO::PARAM_STR);
                                     $query->execute();
                                     $results = $query->fetchAll(PDO::FETCH_OBJ);
                                     $cnt = 1;
@@ -85,7 +86,7 @@ if (strlen($_SESSION['login']) == 0) {
                                             <tr>
                                                 <td><?php echo htmlentities($cnt); ?></td>
                                                 <td><?php echo htmlentities($result->title); ?></td>
-                                                <td><?php echo htmlentities($result->catname); ?></td>
+                                                <!-- <td><?php echo htmlentities($result->catname); ?></td> -->
                                                 <td><a href="edit-post.php?id=<?php echo $result->id; ?>">edit</a>
                                                 <td><a href="manage-posts.php?del=<?php echo $result->id; ?>"
                                                        onclick="return confirm('Do you want to delete?');">delete</a>

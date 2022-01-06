@@ -1,7 +1,7 @@
 <?php
 session_set_cookie_params(0);
 session_start();
-include('includes/config.php');
+include ('includes/config.php');
 error_reporting(0);
 $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
 ?>
@@ -1272,54 +1272,68 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
         <div class="row"> -->
                 <div id="grid-wrapper" class="post-list group">
                   <?php
-                      if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
-                          $page_no = $_GET['page_no'];
-                      } else {
-                          $page_no = 1;
-                      }
-      
-                      $total_records_per_page = 6;
-                      $offset = ($page_no - 1) * $total_records_per_page;
-                      $previous_page = $page_no - 1;
-                      $next_page = $page_no + 1;
-                      $adjacents = "2";
-      
-                      $sql1 = "SELECT * FROM `posts` WHERE posts.status=1";
-                      $stmt1 = $dbh->prepare($sql1);
-                      $stmt1->execute();
-                      $total_records = $stmt1->rowCount();
-      
-                      $total_no_of_pages = ceil($total_records / $total_records_per_page);
-                      $second_last = $total_no_of_pages - 1;
-      
-                      $s = 1;
-                      $sql = "SELECT posts.*,categories.catname FROM posts JOIN categories ON categories.id=posts.category WHERE posts.status=:s ORDER BY posts.id DESC LIMIT $offset, $total_records_per_page";
-                      $query = $dbh->prepare($sql);
-                      $query->bindParam(':s', $s, PDO::PARAM_STR);
-                      $query->execute();
-                      $results = $query->fetchAll(PDO::FETCH_OBJ);
-                      $cnt = 1;
-                      if ($query->rowCount() > 0) {
-                        $count = 0;
-                          foreach ($results as $result) {
-                            
-                            if($count %2 == 0)
-                            {
-                              if($count != 0)
-                              {
-                                echo '</div>';
-                              }
-                                
-                              echo '<div class="post-row">';
-                            }
-                              ?>
+if (isset($_GET['page_no']) && $_GET['page_no'] != "")
+{
+    $page_no = $_GET['page_no'];
+}
+else
+{
+    $page_no = 1;
+}
+
+$total_records_per_page = 6;
+$offset = ($page_no - 1) * $total_records_per_page;
+$previous_page = $page_no - 1;
+$next_page = $page_no + 1;
+$adjacents = "2";
+
+$sql1 = "SELECT * FROM `posts` WHERE posts.status=1 ";
+$stmt1 = $dbh->prepare($sql1);
+$stmt1->execute();
+$total_records = $stmt1->rowCount();
+
+$sql2 = "SELECT * FROM `posts` WHERE posts.status=1 ORDER BY posts.id DESC LIMIT $offset, $total_records_per_page";
+$stmt2 = $dbh->prepare($sql2);
+$stmt2->execute();
+$datas = $stmt2->fetchAll(PDO::FETCH_OBJ);
+$data_count = $stmt2->rowCount();
+
+echo $data_count;
+
+$total_no_of_pages = ceil($total_records / $total_records_per_page);
+$second_last = $total_no_of_pages - 1;
+
+$s = 1;
+$sql = "SELECT posts.*,categories.catname FROM posts JOIN categories ON categories.id=posts.category WHERE posts.status=:s ORDER BY posts.id DESC LIMIT $offset, $total_records_per_page";
+$query = $dbh->prepare($sql);
+$query->bindParam(':s', $s, PDO::PARAM_STR);
+$query->execute();
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+$cnt = 1;
+// if ($query->rowCount() > 0) {
+if ($data_count > 0)
+{
+    $count = 0;
+    // foreach ($results as $result) {
+    foreach ($datas as $data)
+    {
+        if ($count % 2 == 0)
+        {
+            if ($count != 0)
+            {
+                echo '</div>';
+            }
+
+            echo '<div class="post-row">';
+        }
+?>
 
 
                   <article id="post-650"
                     class="group grid-item post-650 post type-post status-publish format-standard has-post-thumbnail hentry category-economy-and-markets">
                     <div class="post-inner post-hover">
                       <div class="post-thumbnail"> <a
-                          href="post-details.php?id= <?php echo htmlentities($result->id); ?>">
+                          href="post-details.php?id= <?php echo htmlentities($data->id); ?>">
                           <img width="938" height="457"
                             src="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?fit=938%2C457&amp;ssl=1"
                             class="attachment-full size-full wp-post-image jetpack-lazy-image" alt="" loading="lazy"
@@ -1348,15 +1362,15 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
                             title="Posts by Forum Bhatt" rel="author">Forum Bhatt</a> </p>
                       </div>
                       <!--/.post-meta-->
-                      <a href="post-details.php?id= <?php echo htmlentities($result->id); ?>" rel="bookmark"
+                      <a href="post-details.php?id= <?php echo htmlentities($data->id); ?>" rel="bookmark"
                         title="Permalink to The Changing Landscape Of Warehousing And Logistics Sector In India">
                         <h2 class="post-title entry-title"></h2>
-                        <?php echo htmlentities($result->title); ?>
+                        <?php echo htmlentities($data->title); ?>
 
                         <!--/.post-title-->
                         <div class="entry excerpt entry-summary">
                           <p>
-                            <?php echo htmlentities($result->grabber); ?>
+                            <?php echo htmlentities($data->grabber); ?>
                           </p>
                         </div>
                       </a>
@@ -1366,11 +1380,10 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
                   </article>
 
                   <?php
-                
-                $count = $count + 1;
-                
-                }
-                      } ?>
+        $count = $count + 1;
+
+    }
+} ?>
 
                 </div>
 
@@ -1385,70 +1398,97 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li <?php if ($page_no <=1) { echo "class='page-item disabled'" ; } ?>>
-                    <a class="page-link" <?php if ($page_no> 1) {
+                    <a class="page-link" <?php if ($page_no> 1)
+                      {
                       echo "href='?page_no=$previous_page'";
                       } ?>>Previous</a>
                   </li>
 
                   <?php
-                          if ($total_no_of_pages <= 10) {
-                              for ($counter = 1; $counter <= $total_no_of_pages; $counter++) {
-                                  if ($counter == $page_no) {
-                                      echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
-                                  } else {
-                                      echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
-                                  }
-                              }
-                          } elseif ($total_no_of_pages > 10) {
-                              if ($page_no <= 4) {
-                                  for ($counter = 1; $counter < 8; $counter++) {
-                                      if ($counter == $page_no) {
-                                          echo "<li class='page-item active'><a>$counter</a></li>";
-                                      } else {
-                                          echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
-                                      }
-                                  }
-                                  echo "<li class='page-item'><a>...</a></li>";
-                                  echo "<li class='page-item'><a class='page-link' href='?page_no=$second_last'>$second_last</a></li>";
-                                  echo "<li class='page-item'><a class='page-link' href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
-                              } elseif ($page_no > 4 && $page_no < $total_no_of_pages - 4) {
-                                  echo "<li class='page-item'><a class='page-link' href='?page_no=1'>1</a></li>";
-                                  echo "<li class='page-item'><a class='page-link' href='?page_no=2'>2</a></li>";
-                                  echo "<li class='page-item'><a>...</a></li>";
-                                  for ($counter = $page_no - $adjacents; $counter <= $page_no + $adjacents; $counter++) {
-                                      if ($counter == $page_no) {
-                                          echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
-                                      } else {
-                                          echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
-                                      }
-                                  }
-                                  echo "<li class='page-item'><a>...</a></li>";
-                                  echo "<li class='page-item'><a href='?page_no=$second_last'>$second_last</a></li>";
-                                  echo "<li class='page-item'><a href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
-                              } else {
-                                  echo "<li class='page-item'><a class='page-link' href='?page_no=1'>1</a></li>";
-                                  echo "<li class='page-item'><a class='page-link' href='?page_no=2'>2</a></li>";
-                                  echo "<li class='page-item'><a>...</a></li>";
-                                  for ($counter = $total_no_of_pages - 6; $counter <= $total_no_of_pages; $counter++) {
-                                      if ($counter == $page_no) {
-                                          echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
-                                      } else {
-                                          echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
-                                      }
-                                  }
-                              }
-                          }
-                          ?>
+if ($total_no_of_pages <= 10)
+{
+    for ($counter = 1;$counter <= $total_no_of_pages;$counter++)
+    {
+        if ($counter == $page_no)
+        {
+            echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
+        }
+        else
+        {
+            echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
+        }
+    }
+}
+elseif ($total_no_of_pages > 10)
+{
+    if ($page_no <= 4)
+    {
+        for ($counter = 1;$counter < 8;$counter++)
+        {
+            if ($counter == $page_no)
+            {
+                echo "<li class='page-item active'><a>$counter</a></li>";
+            }
+            else
+            {
+                echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
+            }
+        }
+        echo "<li class='page-item'><a>...</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?page_no=$second_last'>$second_last</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
+    }
+    elseif ($page_no > 4 && $page_no < $total_no_of_pages - 4)
+    {
+        echo "<li class='page-item'><a class='page-link' href='?page_no=1'>1</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?page_no=2'>2</a></li>";
+        echo "<li class='page-item'><a>...</a></li>";
+        for ($counter = $page_no - $adjacents;$counter <= $page_no + $adjacents;$counter++)
+        {
+            if ($counter == $page_no)
+            {
+                echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
+            }
+            else
+            {
+                echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
+            }
+        }
+        echo "<li class='page-item'><a>...</a></li>";
+        echo "<li class='page-item'><a href='?page_no=$second_last'>$second_last</a></li>";
+        echo "<li class='page-item'><a href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
+    }
+    else
+    {
+        echo "<li class='page-item'><a class='page-link' href='?page_no=1'>1</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?page_no=2'>2</a></li>";
+        echo "<li class='page-item'><a>...</a></li>";
+        for ($counter = $total_no_of_pages - 6;$counter <= $total_no_of_pages;$counter++)
+        {
+            if ($counter == $page_no)
+            {
+                echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
+            }
+            else
+            {
+                echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
+            }
+        }
+    }
+}
+?>
 
-                  <li <?php if ($page_no>= $total_no_of_pages) {
+                  <li <?php if ($page_no>= $total_no_of_pages)
+                    {
                     echo "class='page-item disabled'";
                     } ?>>
                     <a class="page-link" <?php if ($page_no < $total_no_of_pages) { echo "href='?page_no=$next_page'" ;
                       } ?>>Next</a>
                   </li>
-                  <?php if ($page_no < $total_no_of_pages) {
-                              echo "<li class='page-item'><a class='page-link' href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
-                          } ?>
+                  <?php if ($page_no < $total_no_of_pages)
+{
+    echo "<li class='page-item'><a class='page-link' href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+} ?>
                 </ul>
               </nav>
           </div>
