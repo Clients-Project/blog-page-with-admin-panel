@@ -703,7 +703,12 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
 
     // })
   </script>
+<style>
+  .disabled a{
+    background:rgb(40 135 158 / 60% ) !important;
+  }
 
+</style>
 
 
   <link rel="stylesheet" href="assets/style.css">
@@ -1196,6 +1201,15 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
               <!--/.page-title-->
               <div class="hu-pad group">
 
+                <?php 
+
+      $sqlFirst = "SELECT * FROM `posts` WHERE posts.status=1 ORDER BY id DESC LIMIT 1 ";
+      $stmtFirst = $dbh->prepare($sqlFirst);
+      $stmtFirst->execute();
+      $datasFirst = $stmtFirst->fetchAll(PDO::FETCH_OBJ);
+
+      foreach($datasFirst as $data){
+        ?>
 
                 <div class="featured">
 
@@ -1203,55 +1217,52 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
                     class="group post-676 post type-post status-publish format-standard has-post-thumbnail hentry category-economy-and-markets">
                     <div class="post-inner post-hover">
                       <div class="post-thumbnail featured-img-thumb-xlarge">
-                        <a href="https://blog.gripinvest.in/indias-foodtech-play-more-than-just-delivery/">
-                          <img width="909" height="508"
-                            src="assets/img/postimages/1641636246.png" />
+                        <a href="post-details-1.php?id= <?php echo htmlentities($data->id); ?>">
+                          <img width="938" height="457" src="assets/img/postimages/<?php echo $data->image1 ;?>" />
                         </a>
                       </div>
                       <!--/.post-thumbnail-->
                       <div class="post-meta group">
-                        <p class="post-category"><a href="https://blog.gripinvest.in/category/economy-and-markets/"
-                            rel="category tag">Economy and Markets</a></p>
                         <p class="post-date">
-                          <time class="published updated" datetime="2021-05-26 18:42:54">May 26, 2021</time>
+                          <time class="published updated" datetime="2021-05-26 18:42:54"><?php echo date('d F Y', strtotime($data->creationdate)); ?></time>
                         </p>
-                        <p class="post-date">
-                          &nbsp;by&nbsp;<a href="https://blog.gripinvest.in/author/gripforum/"
-                            title="Posts by Forum Bhatt" rel="author">Forum Bhatt</a> </p>
 
                       </div>
                       <!--/.post-meta-->
 
                       <h2 class="post-title entry-title">
-                        <a href="https://blog.gripinvest.in/indias-foodtech-play-more-than-just-delivery/"
-                          rel="bookmark" title="Permalink to India’s FoodTech Play: More Than Just Delivery">India’s
-                          FoodTech Play: More Than Just Delivery</a>
+                        <a href="post-details-1.php?id= <?php echo htmlentities($data->id); ?>">
+                          <?php echo $data->title;?>
+                        </a>
                       </h2>
                       <!--/.post-title-->
 
                       <div class="entry excerpt entry-summary">
-                        <p>&nbsp; The FoodTech story in India has been fascinating to track with rapid expansion in
-                          volumes. What is equally interesting but has received less attention is the distinct evolution
-                          of business models in this&#46;&#46;&#46;</p>
-                      </div>
-                      <!--/.entry-->
+                        <p><?php echo $data->grabber; ?>
+                </p>
+              </div>
+              <!--/.entry-->
 
-                    </div>
-                    <!--/.post-inner-->
-                  </article>
-                  <!--/.post-->
-                </div>
-                <!--/.featured-->
+          </div>
+          <!--/.post-inner-->
+          </article>
+          <!--/.post-->
+        </div>
+        <?php
+        }
 
-                <!-- <div id="grid-wrapper" class="post-list group"> -->
+        ?>
+        <!--/.featured-->
+
+        <!-- <div id="grid-wrapper" class="post-list group"> -->
 
 
-                <!-- TESTING CODE -->
-                <!-- <article>
+        <!-- TESTING CODE -->
+        <!-- <article>
       <div class="container">
         <div class="row"> -->
-                <div id="grid-wrapper" class="post-list group">
-                  <?php
+        <div id="grid-wrapper" class="post-list group">
+          <?php
 if (isset($_GET['page_no']) && $_GET['page_no'] != "")
 {
     $page_no = $_GET['page_no'];
@@ -1308,75 +1319,75 @@ if ($data_count > 0)
 ?>
 
 
-                  <article id="post-650"
-                    class="group grid-item post-650 post type-post status-publish format-standard has-post-thumbnail hentry category-economy-and-markets">
-                    <div class="post-inner post-hover">
-                      <div class="post-thumbnail"> <a
-                          href="post-details-1.php?id= <?php echo htmlentities($data->id); ?>">
-                          <img width="938" height="457" src="assets/img/postimages/<?php echo $data->image1 ;?>"
-                            class="attachment-full size-full wp-post-image jetpack-lazy-image" alt="" loading="lazy" />
-                        </a>
-                        <!-- <img src="assets/img/postimages/<?php echo $data->image1 ;?>" /> -->
-                      </div>
-                      <!--/.post-thumbnail-->
-                      <div class="post-meta group">
-                        <!-- <p class="post-category"><a href="https://blog.gripinvest.in/category/economy-and-markets/"
+          <article id="post-650"
+            class="group grid-item post-650 post type-post status-publish format-standard has-post-thumbnail hentry category-economy-and-markets">
+            <div class="post-inner post-hover">
+              <div class="post-thumbnail"> <a href="post-details-1.php?id= <?php echo htmlentities($data->id); ?>">
+                  <img width="938" height="457" src="assets/img/postimages/<?php echo $data->image1 ;?>"
+                    class="attachment-full size-full wp-post-image jetpack-lazy-image" alt="" loading="lazy" />
+                </a>
+                <!-- <img src="assets/img/postimages/<?php echo $data->image1 ;?>" /> -->
+              </div>
+              <!--/.post-thumbnail-->
+              <div class="post-meta group">
+                <!-- <p class="post-category"><a href="https://blog.gripinvest.in/category/economy-and-markets/"
                             rel="category tag">Economy and Markets</a></p> -->
-                        <!-- <p class="post-date" style="padding-right: 15px"><a
+                <!-- <p class="post-date" style="padding-right: 15px"><a
                             href="https://blog.gripinvest.in/author/gripforum/" title="Posts by Forum Bhatt"
                             rel="author">By Admin </a> </p> -->
-                        <p class="post-date"> <time class="published updated" datetime="2021-03-25 13:44">
+                <p class="post-date"> <time class="published updated" datetime="2021-03-25 13:44">
 
-                            <!-- <?php echo htmlentities($data->creationdate); ?> -->
-                            <?php echo date('d F Y', strtotime($data->creationdate)); ?>
-                          </time> </p>
-                      </div>
-                      <!--/.post-meta-->
+                    <!-- <?php echo htmlentities($data->creationdate); ?> -->
+                    <?php echo date('d F Y', strtotime($data->creationdate)); ?>
+                  </time> </p>
+              </div>
+              <!--/.post-meta-->
 
-                      <h2 class="post-title entry-title"><a
-                          href="post-details-1.php?id= <?php echo htmlentities($data->id); ?>" rel="bookmark"
-                          title="Permalink to The Changing Landscape Of Warehousing And Logistics Sector In India">
-                          <?php echo htmlentities($data->title); ?>
-                        </a></h2>
+              <h2 class="post-title entry-title"><a href="post-details-1.php?id= <?php echo htmlentities($data->id); ?>"
+                  rel="bookmark"
+                  title="Permalink to The Changing Landscape Of Warehousing And Logistics Sector In India">
+                  <?php echo htmlentities($data->title); ?>
+                </a></h2>
 
-                      <!--/.post-title-->
-                      <div class="entry excerpt entry-summary">
-                        <p>
-                          <?php echo htmlentities($data->grabber); ?>
-                        </p>
-                      </div>
+              <!--/.post-title-->
+              <div class="entry excerpt entry-summary">
+                <p>
+                  <?php echo htmlentities($data->grabber); ?>
+                </p>
+              </div>
 
-                      <!--/.entry-->
-                    </div>
-                    <!--/.post-inner-->
-                  </article>
+              <!--/.entry-->
+            </div>
+            <!--/.post-inner-->
+          </article>
 
-                  <?php
+          <?php
         $count = $count + 1;
 
     }
 } ?>
 
-                </div>
+        </div>
 
-                <!-- <div style='padding: 10px 20px 0;'>
+        <!-- <div style='padding: 10px 20px 0;'>
                   <strong>Page
                     <?php echo $page_no . " of " . $total_no_of_pages; ?>
                   </strong>
                 </div> -->
 
-              </div>
+      </div>
 
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li <?php if ($page_no <=1) { echo "class='page-item disabled'" ; } ?>>
-                    <a style="border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;" class="page-link" <?php if ($page_no> 1)
-                      {
-                      echo "href='?page_no=$previous_page'";
-                      } ?>><i class="fas fa-chevron-left"></i></a>
-                  </li>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li <?php if ($page_no <=1) { echo "class='page-item disabled'" ; } ?>>
+            <a style="border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;margin-right:15px;" class="page-link"
+              <?php if ($page_no> 1)
+              {
+              echo "href='?page_no=$previous_page'";
+              } ?>><i class="fas fa-chevron-left"></i></a>
+          </li>
 
-                  <?php
+          <?php
 if ($total_no_of_pages <= 10)
 {
     for ($counter = 1;$counter <= $total_no_of_pages;$counter++)
@@ -1450,21 +1461,22 @@ elseif ($total_no_of_pages > 10)
 }
 ?>
 
-                  <li <?php if ($page_no>= $total_no_of_pages)
-                    {
-                    echo "class='page-item disabled'";
-                    } ?>>
-                    <a style="border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;" class="page-link" <?php if ($page_no < $total_no_of_pages) { echo "href='?page_no=$next_page'" ;
-                      } ?>><i class="fas fa-chevron-right"></i></a>
-                  </li>
-                  <?php if ($page_no < $total_no_of_pages)
+          <li <?php if ($page_no>= $total_no_of_pages)
+            {
+            echo "class='page-item disabled'";
+            } ?>>
+            <a style="border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;margin-left:15px;" class="page-link"
+              <?php if ($page_no < $total_no_of_pages) { echo "href='?page_no=$next_page'" ; } ?>><i
+                class="fas fa-chevron-right"></i></a>
+          </li>
+          <?php if ($page_no < $total_no_of_pages)
 {
     // echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158); border-radius: 2em;' class='page-link' href='?page_no=$total_no_of_pages'><i class='fas fa-angle-double-right'></i></a></li>";
 } ?>
-                </ul>
-              </nav>
-          </div>
-          </article>
+        </ul>
+      </nav>
+    </div>
+    </article>
 
 
 
@@ -1491,7 +1503,7 @@ elseif ($total_no_of_pages > 10)
 
 
 
-          <!-- TESTING CODE -->
+    <!-- TESTING CODE -->
 
 
 
@@ -1513,36 +1525,36 @@ elseif ($total_no_of_pages > 10)
 
 
 
-        </div>
-        <!--/.post-list-->
+  </div>
+  <!--/.post-list-->
 
-        <!-- <nav class="pagination group">
+  <!-- <nav class="pagination group">
           <ul class="group">
             <li class="prev left"></li>
             <li class="next right"><a href="https://blog.gripinvest.in/page/2/">Next Page &raquo;</a></li>
           </ul>
         </nav> -->
-        <!--/.pagination-->
+  <!--/.pagination-->
 
-      </div>
-      <!--/.hu-pad-->
-      </section>
-      <!--/.content-->
+  </div>
+  <!--/.hu-pad-->
+  </section>
+  <!--/.content-->
 
 
-      <!-- <div class="sidebar s1 collapsed" data-position="right" data-layout="col-2cl" data-sb-id="s1">
+  <!-- <div class="sidebar s1 collapsed" data-position="right" data-layout="col-2cl" data-sb-id="s1">
               <button class="sidebar-toggle" title="Expand Sidebar"><i class="fas sidebar-toggle-arrows"></i></button>
               <div class="sidebar-content">
               </div> -->
-      <!--/.sidebar-content-->
+  <!--/.sidebar-content-->
 
-      <!-- </div> -->
-      <!--/.sidebar-->
+  <!-- </div> -->
+  <!--/.sidebar-->
 
 
 
-    </div>
-    <!--/.main-inner-->
+  </div>
+  <!--/.main-inner-->
   </div>
   <!--/.main-->
   </div>
@@ -2107,7 +2119,10 @@ elseif ($total_no_of_pages > 10)
 
 
 
+<?php 
 
+$dbh = null;
+?>
 
 
 

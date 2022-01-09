@@ -193,4 +193,6 @@ if (strlen($_SESSION['login']) == 0) {
     </body>
 
     </html>
-<?php } ?>
+<?php }
+    $dbh = null;
+?>

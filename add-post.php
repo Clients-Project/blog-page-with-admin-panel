@@ -242,4 +242,6 @@ if (strlen($_SESSION['login']) == 0) {
 <!-- Mirrored from colorlib.com/etc/regform/colorlib-regform-6/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Jan 2022 13:34:23 GMT -->
 
 </html>
-<?php } ?>
+<?php }
+  $dbh = null;
+?>

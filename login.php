@@ -165,4 +165,6 @@ if (!empty($_SESSION['login'])) {
     </body>
 
     </html>
-<?php } ?>
+<?php }
+    $dbh = null;
+?>

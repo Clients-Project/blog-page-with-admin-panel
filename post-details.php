@@ -107,6 +107,7 @@ if (isset($_POST['submit'])) {
   ?>
   <?php 
     include('includes/header1.php')
+    $dbh = null;
   ?>
 
         <script src="assets/js/jquery.min.js"></script>
