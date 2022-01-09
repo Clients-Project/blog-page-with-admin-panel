@@ -14,17 +14,6 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
   <link rel="profile" href="https://gmpg.org/xfn/11" />
   <link rel="pingback" href="https://blog.gripinvest.in/xmlrpc.php">
 
-  <script type="text/javascript">
-    WebFontConfig = { "google": { "families": ["Roboto+Slab:r:latin,latin-ext", "Alegreya+Sans:r,i,b,bi:latin,latin-ext"] } };
-    (function () {
-      var wf = document.createElement('script');
-      wf.src = 'https://blog.gripinvest.in/wp-content/mu-plugins/wpcomsh/vendor/automattic/custom-fonts/js/webfont.js';
-      wf.type = 'text/javascript';
-      wf.async = 'true';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(wf, s);
-    })();
-  </script>
   <style id="jetpack-custom-fonts-css"></style>
   <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
@@ -50,6 +39,10 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+  <!-- font awesome -->
+  <!-- <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'> -->
+  <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+
   <link rel='dns-prefetch' href='//secure.gravatar.com' />
   <link rel='dns-prefetch' href='//www.googletagmanager.com' />
   <link rel='dns-prefetch' href='//s.w.org' />
@@ -68,10 +61,6 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
     href="https://blog.gripinvest.in/comments/feed/" />
   <link id="hu-user-gfont" href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&subset=latin-ext"
     rel="stylesheet" type="text/css">
-  <script type="text/javascript">
-    window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "https:\/\/blog.gripinvest.in\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.2" } };
-    !function (e, a, t) { var n, r, o, i = a.createElement("canvas"), p = i.getContext && i.getContext("2d"); function s(e, t) { var a = String.fromCharCode; p.clearRect(0, 0, i.width, i.height), p.fillText(a.apply(this, e), 0, 0); e = i.toDataURL(); return p.clearRect(0, 0, i.width, i.height), p.fillText(a.apply(this, t), 0, 0), e === i.toDataURL() } function c(e) { var t = a.createElement("script"); t.src = e, t.defer = t.type = "text/javascript", a.getElementsByTagName("head")[0].appendChild(t) } for (o = Array("flag", "emoji"), t.supports = { everything: !0, everythingExceptFlag: !0 }, r = 0; r < o.length; r++)t.supports[o[r]] = function (e) { if (!p || !p.fillText) return !1; switch (p.textBaseline = "top", p.font = "600 32px Arial", e) { case "flag": return s([127987, 65039, 8205, 9895, 65039], [127987, 65039, 8203, 9895, 65039]) ? !1 : !s([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819]) && !s([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447]); case "emoji": return !s([10084, 65039, 8205, 55357, 56613], [10084, 65039, 8203, 55357, 56613]) }return !1 }(o[r]), t.supports.everything = t.supports.everything && t.supports[o[r]], "flag" !== o[r] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[o[r]]); t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function () { t.DOMReady = !0 }, t.supports.everything || (n = function () { t.readyCallback() }, a.addEventListener ? (a.addEventListener("DOMContentLoaded", n, !1), e.addEventListener("load", n, !1)) : (e.attachEvent("onload", n), a.attachEvent("onreadystatechange", function () { "complete" === a.readyState && t.readyCallback() })), (n = t.source || {}).concatemoji ? c(n.concatemoji) : n.wpemoji && n.twemoji && (c(n.twemoji), c(n.wpemoji))) }(window, document, window._wpemojiSettings);
-  </script>
   <style type="text/css">
     img.wp-smiley,
     img.emoji {
@@ -543,18 +532,7 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
   <script type='text/javascript'
     src='https://blog.gripinvest.in/wp-content/plugins/jetpack/_inc/build/tiled-gallery/tiled-gallery/tiled-gallery.min.js?m=1638896208'></script>
   <script src='https://blog.gripinvest.in/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
-  <script type='text/javascript'
-    src='https://blog.gripinvest.in/_static/??wp-includes/js/jquery/jquery-migrate.min.js,wp-content/themes/hueman/assets/front/js/libs/jquery.flexslider.min.js?m=1605690366'></script>
 
-  <!-- Google Analytics snippet added by Site Kit -->
-  <script src='https://www.googletagmanager.com/gtag/js?id=UA-164529810-1' id='google_gtagjs-js' async></script>
-  <script id='google_gtagjs-js-after'>
-    window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }
-    gtag('set', 'linker', { "domains": ["blog.gripinvest.in"] });
-    gtag("js", new Date());
-    gtag("set", "developer_id.dZTNiMT", true);
-    gtag("config", "UA-164529810-1", { "anonymize_ip": true });
-  </script>
 
   <!-- End Google Analytics snippet added by Site Kit -->
   <link rel="https://api.w.org/" href="https://blog.gripinvest.in/wp-json/" />
@@ -728,10 +706,18 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
 
 
 
-
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body class="home blog wp-embed-responsive col-2cl full-width header-desktop-sticky hu-header-img-full-width unknown">
+  <?php 
+        include('includes/preloader.php')
+    ?>
+
+  <?php 
+    include('includes/header.php')
+  ?>
+
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
     <defs>
@@ -1190,6 +1176,13 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
     <!-- </header> -->
     <!--/#header-->
 
+    <style>
+      div#page {
+        margin-top: 80px;
+      }
+    </style>
+
+
     <div class="container" id="page">
       <div class="container-inner">
         <div class="main">
@@ -1212,20 +1205,7 @@ $_SESSION['redirectURL'] = $_SERVER['REQUEST_URI'];
                       <div class="post-thumbnail featured-img-thumb-xlarge">
                         <a href="https://blog.gripinvest.in/indias-foodtech-play-more-than-just-delivery/">
                           <img width="909" height="508"
-                            src="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/05/Forum-Bloghgh.png?fit=909%2C508&amp;ssl=1"
-                            class="attachment-full size-full wp-post-image jetpack-lazy-image" alt="" loading="lazy"
-                            data-attachment-id="718"
-                            data-permalink="https://blog.gripinvest.in/indias-foodtech-play-more-than-just-delivery/forum-bloghgh/"
-                            data-orig-file="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/05/Forum-Bloghgh.png?fit=909%2C508&amp;ssl=1"
-                            data-orig-size="909,508" data-comments-opened="1"
-                            data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}"
-                            data-image-title="Forum Bloghgh" data-image-description="" data-image-caption=""
-                            data-medium-file="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/05/Forum-Bloghgh.png?fit=300%2C168&amp;ssl=1"
-                            data-large-file="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/05/Forum-Bloghgh.png?fit=909%2C508&amp;ssl=1"
-                            data-lazy-srcset="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/05/Forum-Bloghgh.png?w=909&amp;ssl=1 909w, https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/05/Forum-Bloghgh.png?resize=300%2C168&amp;ssl=1 300w, https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/05/Forum-Bloghgh.png?resize=768%2C429&amp;ssl=1 768w"
-                            data-lazy-sizes="(max-width: 909px) 100vw, 909px"
-                            data-lazy-src="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/05/Forum-Bloghgh.png?fit=909%2C508&amp;ssl=1&amp;is-pending-load=1"
-                            srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+                            src="assets/img/postimages/1641636246.png" />
                         </a>
                       </div>
                       <!--/.post-thumbnail-->
@@ -1298,7 +1278,6 @@ $stmt2->execute();
 $datas = $stmt2->fetchAll(PDO::FETCH_OBJ);
 $data_count = $stmt2->rowCount();
 
-echo $data_count;
 
 $total_no_of_pages = ceil($total_records / $total_records_per_page);
 $second_last = $total_no_of_pages - 1;
@@ -1333,47 +1312,40 @@ if ($data_count > 0)
                     class="group grid-item post-650 post type-post status-publish format-standard has-post-thumbnail hentry category-economy-and-markets">
                     <div class="post-inner post-hover">
                       <div class="post-thumbnail"> <a
-                          href="post-details.php?id= <?php echo htmlentities($data->id); ?>">
-                          <img width="938" height="457"
-                            src="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?fit=938%2C457&amp;ssl=1"
-                            class="attachment-full size-full wp-post-image jetpack-lazy-image" alt="" loading="lazy"
-                            data-attachment-id="665"
-                            data-permalink="https://blog.gripinvest.in/the-changing-landscape-of-warehousing-and-logistics-sector-in-india/warehouse-and-logistics-4/"
-                            data-orig-file="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?fit=938%2C457&amp;ssl=1"
-                            data-orig-size="938,457" data-comments-opened="1"
-                            data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;Warehouse with cargo vehicle truck scenery vector illustration graphic design&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;Warehouse and logistics&quot;,&quot;orientation&quot;:&quot;1&quot;}"
-                            data-image-title="Warehouse and logistics" data-image-description=""
-                            data-image-caption="&lt;p&gt;Warehouse &lt;/p&gt;"
-                            data-medium-file="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?fit=300%2C146&amp;ssl=1"
-                            data-large-file="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?fit=938%2C457&amp;ssl=1"
-                            data-lazy-srcset="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?w=938&amp;ssl=1 938w, https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?resize=300%2C146&amp;ssl=1 300w, https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?resize=768%2C374&amp;ssl=1 768w"
-                            data-lazy-sizes="(max-width: 938px) 100vw, 938px"
-                            data-lazy-src="https://i0.wp.com/blog.gripinvest.in/wp-content/uploads/2021/03/Final.jpg?fit=938%2C457&amp;ssl=1&amp;is-pending-load=1"
-                            srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+                          href="post-details-1.php?id= <?php echo htmlentities($data->id); ?>">
+                          <img width="938" height="457" src="assets/img/postimages/<?php echo $data->image1 ;?>"
+                            class="attachment-full size-full wp-post-image jetpack-lazy-image" alt="" loading="lazy" />
                         </a>
+                        <!-- <img src="assets/img/postimages/<?php echo $data->image1 ;?>" /> -->
                       </div>
                       <!--/.post-thumbnail-->
                       <div class="post-meta group">
-                        <p class="post-category"><a href="https://blog.gripinvest.in/category/economy-and-markets/"
-                            rel="category tag">Economy and Markets</a></p>
-                        <p class="post-date"> <time class="published updated" datetime="2021-03-25 13:44:24">March 25,
-                            2021</time> </p>
-                        <p class="post-date"> &nbsp;by&nbsp;<a href="https://blog.gripinvest.in/author/gripforum/"
-                            title="Posts by Forum Bhatt" rel="author">Forum Bhatt</a> </p>
+                        <!-- <p class="post-category"><a href="https://blog.gripinvest.in/category/economy-and-markets/"
+                            rel="category tag">Economy and Markets</a></p> -->
+                        <!-- <p class="post-date" style="padding-right: 15px"><a
+                            href="https://blog.gripinvest.in/author/gripforum/" title="Posts by Forum Bhatt"
+                            rel="author">By Admin </a> </p> -->
+                        <p class="post-date"> <time class="published updated" datetime="2021-03-25 13:44">
+
+                            <!-- <?php echo htmlentities($data->creationdate); ?> -->
+                            <?php echo date('d F Y', strtotime($data->creationdate)); ?>
+                          </time> </p>
                       </div>
                       <!--/.post-meta-->
-                      <a href="post-details.php?id= <?php echo htmlentities($data->id); ?>" rel="bookmark"
-                        title="Permalink to The Changing Landscape Of Warehousing And Logistics Sector In India">
-                        <h2 class="post-title entry-title"></h2>
-                        <?php echo htmlentities($data->title); ?>
 
-                        <!--/.post-title-->
-                        <div class="entry excerpt entry-summary">
-                          <p>
-                            <?php echo htmlentities($data->grabber); ?>
-                          </p>
-                        </div>
-                      </a>
+                      <h2 class="post-title entry-title"><a
+                          href="post-details-1.php?id= <?php echo htmlentities($data->id); ?>" rel="bookmark"
+                          title="Permalink to The Changing Landscape Of Warehousing And Logistics Sector In India">
+                          <?php echo htmlentities($data->title); ?>
+                        </a></h2>
+
+                      <!--/.post-title-->
+                      <div class="entry excerpt entry-summary">
+                        <p>
+                          <?php echo htmlentities($data->grabber); ?>
+                        </p>
+                      </div>
+
                       <!--/.entry-->
                     </div>
                     <!--/.post-inner-->
@@ -1387,21 +1359,21 @@ if ($data_count > 0)
 
                 </div>
 
-                <div style='padding: 10px 20px 0;'>
+                <!-- <div style='padding: 10px 20px 0;'>
                   <strong>Page
                     <?php echo $page_no . " of " . $total_no_of_pages; ?>
                   </strong>
-                </div>
+                </div> -->
 
               </div>
 
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li <?php if ($page_no <=1) { echo "class='page-item disabled'" ; } ?>>
-                    <a class="page-link" <?php if ($page_no> 1)
+                    <a style="border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;" class="page-link" <?php if ($page_no> 1)
                       {
                       echo "href='?page_no=$previous_page'";
-                      } ?>>Previous</a>
+                      } ?>><i class="fas fa-chevron-left"></i></a>
                   </li>
 
                   <?php
@@ -1411,11 +1383,11 @@ if ($total_no_of_pages <= 10)
     {
         if ($counter == $page_no)
         {
-            echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
+            echo "<li class='page-item active'><a style='border:none; border-radius: 2em; background-color: rgb(40 135 158);color:white;' class='page-link'>$counter</a></li>";
         }
         else
         {
-            echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
+            echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white' class='page-link' href='?page_no=$counter'>$counter</a></li>";
         }
     }
 }
@@ -1427,51 +1399,51 @@ elseif ($total_no_of_pages > 10)
         {
             if ($counter == $page_no)
             {
-                echo "<li class='page-item active'><a>$counter</a></li>";
+                echo "<li class='page-item active'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158); color:white;'>$counter</a></li>";
             }
             else
             {
-                echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
+                echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=$counter'>$counter</a></li>";
             }
         }
-        echo "<li class='page-item'><a>...</a></li>";
-        echo "<li class='page-item'><a class='page-link' href='?page_no=$second_last'>$second_last</a></li>";
-        echo "<li class='page-item'><a class='page-link' href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;'>...</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=$second_last'>$second_last</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
     }
     elseif ($page_no > 4 && $page_no < $total_no_of_pages - 4)
     {
-        echo "<li class='page-item'><a class='page-link' href='?page_no=1'>1</a></li>";
-        echo "<li class='page-item'><a class='page-link' href='?page_no=2'>2</a></li>";
-        echo "<li class='page-item'><a>...</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=1'>1</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=2'>2</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;'>...</a></li>";
         for ($counter = $page_no - $adjacents;$counter <= $page_no + $adjacents;$counter++)
         {
             if ($counter == $page_no)
             {
-                echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
+                echo "<li class='page-item active'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link'>$counter</a></li>";
             }
             else
             {
-                echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
+                echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=$counter'>$counter</a></li>";
             }
         }
-        echo "<li class='page-item'><a>...</a></li>";
-        echo "<li class='page-item'><a href='?page_no=$second_last'>$second_last</a></li>";
-        echo "<li class='page-item'><a href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;'>...</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' href='?page_no=$second_last'>$second_last</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
     }
     else
     {
-        echo "<li class='page-item'><a class='page-link' href='?page_no=1'>1</a></li>";
-        echo "<li class='page-item'><a class='page-link' href='?page_no=2'>2</a></li>";
-        echo "<li class='page-item'><a>...</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=1'>1</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=2'>2</a></li>";
+        echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;'>...</a></li>";
         for ($counter = $total_no_of_pages - 6;$counter <= $total_no_of_pages;$counter++)
         {
             if ($counter == $page_no)
             {
-                echo "<li class='page-item active'><a class='page-link'>$counter</a></li>";
+                echo "<li class='page-item active'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link'>$counter</a></li>";
             }
             else
             {
-                echo "<li class='page-item'><a class='page-link' href='?page_no=$counter'>$counter</a></li>";
+                echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;' class='page-link' href='?page_no=$counter'>$counter</a></li>";
             }
         }
     }
@@ -1482,12 +1454,12 @@ elseif ($total_no_of_pages > 10)
                     {
                     echo "class='page-item disabled'";
                     } ?>>
-                    <a class="page-link" <?php if ($page_no < $total_no_of_pages) { echo "href='?page_no=$next_page'" ;
-                      } ?>>Next</a>
+                    <a style="border:none; border-radius: 2em;background-color: rgb(40 135 158);color:white;" class="page-link" <?php if ($page_no < $total_no_of_pages) { echo "href='?page_no=$next_page'" ;
+                      } ?>><i class="fas fa-chevron-right"></i></a>
                   </li>
                   <?php if ($page_no < $total_no_of_pages)
 {
-    echo "<li class='page-item'><a class='page-link' href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+    // echo "<li class='page-item'><a style='border:none; border-radius: 2em;background-color: rgb(40 135 158); border-radius: 2em;' class='page-link' href='?page_no=$total_no_of_pages'><i class='fas fa-angle-double-right'></i></a></li>";
 } ?>
                 </ul>
               </nav>
@@ -2113,8 +2085,23 @@ elseif ($total_no_of_pages > 10)
   </div>
 
 
+  <?php 
+    include('includes/footer.php')
+  ?>
+  <?php 
+    include('includes/header1.php')
+  ?>
+
+  <script>
+    $(document).ready(function () {
+      $("button.mobile-nav-toggle").click(function () {
+        $("body").toggleClass("mobile-nav-active")
 
 
+      })
+    })
+
+  </script>
 
 
 
@@ -2137,8 +2124,6 @@ elseif ($total_no_of_pages > 10)
     var jetpackSwiperLibraryPath = { "url": "https:\/\/blog.gripinvest.in\/wp-content\/plugins\/jetpack\/_inc\/build\/carousel\/swiper-bundle.min.js" };
     var jetpackCarouselStrings = { "widths": [370, 700, 1000, 1200, 1400, 2000], "is_logged_in": "", "lang": "en", "ajaxurl": "https:\/\/blog.gripinvest.in\/wp-admin\/admin-ajax.php", "nonce": "7eab4d3642", "display_exif": "1", "display_comments": "1", "display_geo": "1", "single_image_gallery": "1", "single_image_gallery_media_file": "", "background_color": "black", "comment": "Comment", "post_comment": "Post Comment", "write_comment": "Write a Comment...", "loading_comments": "Loading Comments...", "download_original": "View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>", "no_comment_text": "Please be sure to submit some text with your comment.", "no_comment_email": "Please provide an email address to comment.", "no_comment_author": "Please provide your name to comment.", "comment_post_error": "Sorry, but there was an error posting your comment. Please try again later.", "comment_approved": "Your comment was approved.", "comment_unapproved": "Your comment is in moderation.", "camera": "Camera", "aperture": "Aperture", "shutter_speed": "Shutter Speed", "focal_length": "Focal Length", "copyright": "Copyright", "comment_registration": "0", "require_name_email": "1", "login_url": "https:\/\/blog.gripinvest.in\/wp-login.php?redirect_to=https%3A%2F%2Fblog.gripinvest.in%2Fthe-changing-landscape-of-warehousing-and-logistics-sector-in-india%2F", "blog_id": "1", "meta_data": ["camera", "aperture", "shutter_speed", "focal_length", "copyright"] };
   </script>
-  <script type='text/javascript'
-    src='https://blog.gripinvest.in/_static/??-eJx1jksKwzAMRC9UR/1AcBelRymOYlI5tmQqmVw/m4Qu0q4G3vCYWapDYYtsUHObiBVStBpwhhcxwtAoj1DfYsJbdIW4S3pajirKkAVnhZHUIH2BC0wlGMk/88coho80jXnv3A62A8/yuPQ37+/99exXLiRK2w=='></script>
   <script src='https://blog.gripinvest.in/wp-includes/js/underscore.min.js?ver=1.13.1' id='underscore-js'></script>
   <script id='hu-front-scripts-js-extra'>
     var HUParams = { "_disabled": [], "SmoothScroll": { "Enabled": false, "Options": { "touchpadSupport": false } }, "centerAllImg": "1", "timerOnScrollAllBrowsers": "1", "extLinksStyle": "", "extLinksTargetExt": "1", "extLinksSkipSelectors": { "classes": ["btn", "button"], "ids": [] }, "imgSmartLoadEnabled": "", "imgSmartLoadOpts": { "parentSelectors": [".container .content", ".container .sidebar", "#footer", "#header-widgets"], "opts": { "excludeImg": [".tc-holder-img"], "fadeIn_options": 100, "threshold": 0 } }, "goldenRatio": "1.618", "gridGoldenRatioLimit": "350", "sbStickyUserSettings": { "desktop": true, "mobile": true }, "sidebarOneWidth": "340", "sidebarTwoWidth": "260", "isWPMobile": "", "menuStickyUserSettings": { "desktop": "stick_up", "mobile": "no_stick" }, "mobileSubmenuExpandOnClick": "", "submenuTogglerIcon": "<i class=\"fas fa-angle-down\"><\/i>", "isDevMode": "", "ajaxUrl": "https:\/\/blog.gripinvest.in\/?huajax=1", "frontNonce": { "id": "HuFrontNonce", "handle": "293244cbc4" }, "isWelcomeNoteOn": "", "welcomeContent": "", "i18n": { "collapsibleExpand": "Expand", "collapsibleCollapse": "Collapse" }, "deferFontAwesome": "", "fontAwesomeUrl": "https:\/\/blog.gripinvest.in\/wp-content\/themes\/hueman\/assets\/front\/css\/font-awesome.min.css?3.6.4", "mainScriptUrl": "https:\/\/blog.gripinvest.in\/wp-content\/themes\/hueman\/assets\/front\/js\/scripts.min.js?3.6.4", "flexSliderNeeded": "1", "flexSliderOptions": { "is_rtl": false, "has_touch_support": true, "is_slideshow": true, "slideshow_speed": 5000 } };
@@ -2146,18 +2131,16 @@ elseif ($total_no_of_pages > 10)
   <script id='jetpack-lazy-images-js-extra'>
     var jetpackLazyImagesL10n = { "loading_warning": "Images are still loading. Please cancel your print and try again." };
   </script>
-  <script type='text/javascript'
-    src='https://blog.gripinvest.in/_static/??-eJytj0sOwjAMRC9EMB9RqQvEUVCamNalcaLYaQWnJ4tWcABWI8+TZzRLMi6yIivogAEFhoLBMlgRVIFHrhRGAXGZkso+EO9H2S3fvzSVnlhgRE3WPTe9z8g+ZrBFY7Cq5DZiJvt+GQq2r3WeRIFqUhZ0SpFN7ATzjPn/NT/GGk7spuIrrwvriaFDv068heuxObeXQ9s2pw883G/8'></script>
   <script src='https://cdn.onesignal.com/sdks/OneSignalSDK.js?ver=5.8.2' async='async' id='remote_sdk-js'></script>
-  <!--[if lt IE 9]>
-<script src="https://blog.gripinvest.in/wp-content/themes/hueman/assets/front/js/ie/respond.js"></script>
-<![endif]-->
-  <script src='https://stats.wp.com/e-202201.js' defer></script>
+
   <script>
-    _stq = window._stq || [];
-    _stq.push(['view', { v: 'ext', j: '1:10.5-a.3', blog: '178981029', post: '0', tz: '5.5', srv: 'blog.gripinvest.in' }]);
-    _stq.push(['clickTrackerInit', '178981029', '0']);
+    $(window).on('load', function () { // makes sure the whole site is loaded 
+      $('#status').fadeOut(); // will first fade out the loading animation 
+      $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+      $('body').delay(350).css({ 'overflow': 'visible' });
+    })
   </script>
+
 </body>
 
 </html>

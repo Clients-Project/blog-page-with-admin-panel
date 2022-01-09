@@ -3,7 +3,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if (!empty($_SESSION['login'])) {
-    header("location: index.php");
+    header("location: add-post.php");
 } else {
     if (isset($_POST['login'])) {
         $email = $_POST['email'];
@@ -20,7 +20,10 @@ if (!empty($_SESSION['login'])) {
         if ($query->rowCount() > 0) {
             $_SESSION['login'] = $_POST['email'];
             $currentpage = $_SESSION['redirectURL'];
-            echo "<script type='text/javascript'> document.location = '$currentpage'; </script>";
+            // echo "<script type='text/javascript'> document.location = '$currentpage'; </script>";
+            // echo "<script type='text/javascript'> document.location = '$'; </script>";
+            header("location: add-post.php");
+
         } else {
             echo "<script>alert('Invalid Details');</script>";
         }
@@ -37,7 +40,7 @@ if (!empty($_SESSION['login'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Login - User</title>
+        <title>Login - Admin</title>
 
         <!-- Custom fonts for this template-->
         <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -86,23 +89,25 @@ if (!empty($_SESSION['login'])) {
     </head>
 
     <body class="bg-gradient-primary">
+    <?php 
+        include('includes/preloader.php')
+    ?>
 
         <div class="container">
 
             <!-- Outer Row -->
             <div class="row justify-content-center">
 
-                <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="col-xl-5 col-lg-8 col-md-9">
 
                     <div class="card o-hidden border-0 shadow-lg my-5">
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
                             <div class="row">
-                                <div class="col-lg-6 d-none d-lg-block" style="background-image: url(admin/img/green.jpg);"></div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">User Login</h1>
+                                            <h1 class="h4 text-gray-900 mb-4">Admin Login</h1>
                                         </div>
                                         <form class="user" method="post" id="userform" name="userlogin"
                                               onsubmit="return validate();" novalidate>
@@ -119,32 +124,14 @@ if (!empty($_SESSION['login'])) {
                                                        autocomplete="off">
                                                 <span id="passwordcheck" style="font-size: 12px; color: red;"></span>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                           id="customCheck">
-                                                    <label class="custom-control-label" for="customCheck">Remember
-                                                                                                          Me</label>
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-success btn-block text-white btn-user" type="submit"
-                                                    name="login">Login
+                                            <button class="btn btn-block text-white btn-user" type="submit"
+                                                    name="login" style="background: rgb(40 135 158)">Login
                                             </button>
                                             <hr>
                                         </form>
-                                        <hr>
                                         <div class="text-center">
                                             <a href="index.php"
-                                               class="btn btn-primary btn-block text-white btn-user">Home</a>
-                                        </div>
-                                        <hr>
-                                        <hr>
-                                        <div class="text-center">
-                                            <a href="register.php" class="btn btn-danger btn-block text-white btn-user">Don't
-                                                                                                                        have
-                                                                                                                        an
-                                                                                                                        account?
-                                                                                                                        Register</a>
+                                               class="btn btn-primary btn-block text-white btn-user" style="border-radius: 2em">Home</a>
                                         </div>
                                     </div>
                                 </div>
@@ -166,6 +153,14 @@ if (!empty($_SESSION['login'])) {
 
             <!-- Custom scripts for all pages-->
             <script src="admin/js/sb-admin-2.min.js"></script>
+
+            <script>
+            $(window).on('load', function() { // makes sure the whole site is loaded 
+                $('#status').fadeOut(); // will first fade out the loading animation 
+                $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+                $('body').delay(350).css({'overflow':'visible'});
+                })
+        </script>
 
     </body>
 

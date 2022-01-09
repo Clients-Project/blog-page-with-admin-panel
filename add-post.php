@@ -8,179 +8,238 @@ if (strlen($_SESSION['login']) == 0) {
 } else {
     if (isset($_POST['submit'])) {
         $title = $_POST['title'];
-        // $cat = $_POST['selectcat'];
         $grabber = $_POST['grabber'];
         $description = $_POST['description'];
-        $username = $_POST['name'];
-
-        // $email3 = $_SESSION['login'];
-
-        // $sql3 = "SELECT `id` FROM `users` WHERE `email`=:email3";
-        // $query3 = $dbh->prepare($sql3);
-        // $query3->bindParam(':email3', $email3, PDO::PARAM_STR);
-        // $query3->execute();
-        // $results3 = $query3->fetchAll(PDO::FETCH_OBJ);
-        // if ($query3->rowCount() > 0) {
-        //     foreach ($results3 as $result3) {
-        //         $uid = $result3->id;
-        //     }
-        // }
 
         $image1 = $_FILES["img1"]["name"];
-        $status = 0;
+        $status = 1;
 
-        move_uploaded_file($_FILES["img1"]["tmp_name"], "assets/img/postimages/" . $_FILES["img1"]["name"]);
+        $temp = explode(".", $_FILES["img1"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $image1 = $newfilename;
 
-        $sql = "INSERT INTO posts(title,grabber,description,image1) VALUES(:title,:grabber,:description,:image1)";
+
+        move_uploaded_file($_FILES["img1"]["tmp_name"], "assets/img/postimages/" . $newfilename);
+
+        $sql = "INSERT INTO posts(title,grabber,description,image1,status) VALUES(:title,:grabber,:description,:image1,:status)";
         $query = $dbh->prepare($sql);
         $query->bindParam(':title', $title, PDO::PARAM_STR);
-        // $query->bindParam(':cat', $cat, PDO::PARAM_STR);
         $query->bindParam(':grabber', $grabber, PDO::PARAM_STR);
         $query->bindParam(':description', $description, PDO::PARAM_STR);
-        // $query->bindParam(':username', $username, PDO::PARAM_STR);
         $query->bindParam(':image1', $image1, PDO::PARAM_STR);
-        // $query->bindParam(':uid', $uid, PDO::PARAM_STR);
-        // $query->bindParam(':status', $status, PDO::PARAM_STR);
-
+        $query->bindParam(':status', $status, PDO::PARAM_STR);
         $query->execute();
         $lastInsertId = $dbh->lastInsertId();
         if ($lastInsertId) {
-            echo "<script>alert('Blog submitted successfully, wait for approval'); document.location = 'index.php';</script>";
+            // echo "<script>alert('Blog submitted successfully'); document.location = 'manage-posts.php';</script>";
+            echo "<script>alert($temp[0]);</script>";
         } else {
-            echo "<script>alert('Something went wrong')</script>";
+            echo "<script>alert($title)</script>";
         }
     }
     ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Mirrored from colorlib.com/etc/regform/colorlib-regform-6/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Jan 2022 13:34:18 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Add Post</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <script src="assets/js/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({ selector: 'textarea' });</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Colorlib Templates">
+  <meta name="author" content="Colorlib">
+  <meta name="keywords" content="Colorlib Templates">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <title>Add Post</title>
+
+  <style id="" media="all">
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: italic;
+      font-weight: 300;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk5hkWVAexQ.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: italic;
+      font-weight: 400;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk8ZkWVAexQ.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: italic;
+      font-weight: 600;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkxhjWVAexQ.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: italic;
+      font-weight: 700;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkyFjWVAexQ.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: italic;
+      font-weight: 800;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk0ZjWVAexQ.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 300;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0B4gaVc.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 600;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1x4gaVc.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1x4gaVc.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 800;
+      font-stretch: normal;
+      src: url(https://colorlib.com/fonts.gstatic.com/s/opensans/v27/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgshZ1x4gaVc.ttf) format('truetype');
+    }
+
+    .tox-notifications-container {
+      display: none;
+    }
+
+    .tox-statusbar__branding {
+      display: none;
+    }
+  </style>
+
+  <meta name="robots" content="noindex, follow">
 </head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="assets/js/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({ selector: 'textarea' });</script>
 
 <body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-lg-8 mx-auto">
-                <h2 class="post-title">Add a post</h2>
-                <form id="contactForm" method="post" enctype="multipart/form-data">
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label for="title">Title</label>
-                            <input class="form-control" type="text" id="title" required placeholder="Title"
-                                name="title">
-                            <small class="form-text text-danger help-block">Title</small>
-                        </div>
-                    </div>
-
-                    <!-- <div class="control-group">
-                            <div class="form-group floating-label-form-group controls">
-                                <label for="select1"><strong>Select Category</strong></label>
-                                <select class="form-control" id="select1"
-                                        name="selectcat" required>
-                                    <option value="">-- Select --</option>
-                                    <?php $ret = "SELECT `id`,`catname` FROM `categories`";
-                                    $query = $dbh->prepare($ret);
-                                    //$query->bindParam(':id',$id, PDO::PARAM_STR);
-                                    $query->execute();
-                                    $results = $query->fetchAll(PDO::FETCH_OBJ);
-                                    if ($query->rowCount() > 0) {
-                                        foreach ($results as $result) {
-                                            ?>
-                                            <option value="<?php echo htmlentities($result->id); ?>">
-                                                <?php echo htmlentities($result->catname); ?>
-                                            </option>
-                                        <?php }
-                                    } ?>
-                                </select>
-                                <small class="form-text text-danger help-block">Select Category</small>
-                            </div>
-                        </div> -->
-
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label for="grabber">Grabber</label>
-                            <input class="form-control" type="text" id="grabber" required placeholder="Grabber"
-                                name="grabber">
-                            <small class="form-text text-danger help-block">Grabber</small>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label for="file1">Add an image</label>
-                            <input type="file" class="form-control-file" id="file1" name="img1">
-                            <small class="form-text text-danger help-block">Header Image</small>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label for="desc">Description</label>
-                            <textarea class="form-control" id="desc" required rows="5" name="description"></textarea>
-                            <small class="form-text text-danger help-block">Description</small>
-                        </div>
-                    </div>
-                    <?php
-                        $email = $_SESSION['login'];
-                        $sql2 = "SELECT fname,lname,id FROM users WHERE email=:email ";
-                        $query = $dbh->prepare($sql2);
-                        $query->bindParam(':email', $email, PDO::PARAM_STR);
-                        $query->execute();
-                        $results = $query->fetchAll(PDO::FETCH_OBJ);
-                        if ($query->rowCount() > 0) {
-                            foreach ($results as $result2) {
-                                $name = $result2->fname . " " . $result2->lname;
-                                ?>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
-                            <label for="name">Username</label>
-                            <input class="form-control" type="text" id="name" required name="name"
-                                value="<?php echo htmlentities($name); ?>">
-                            <small class="form-text text-danger help-block">Username</small>
-                        </div>
-                    </div>
-                    <?php }
-                        }
-                        ?>
-                    <br>
-                    <div id="success"></div>
-                    <div class="form-group">
-                        <button class="btn btn-primary float-right" id="sendMessageButton" type="submit"
-                            name="submit">Post
-                        </button>
-                    </div>
-                </form>
-            </div>
+  <?php 
+        include('includes/preloader.php')
+        ?>
+  <?php 
+        include('includes/header-admin.php')
+        ?>
+  <link href="assets/css/main.css" rel="stylesheet" media="all">
+  <div class="page-wrapper bg-dark p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+      <div class="card card-6">
+        <div class="card-heading">
+          <h2 class="title">Add Post</h2>
         </div>
+        <div class="card-body">
+          <form method="POST" id="contactForm" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+              <div class="name">Title</div>
+              <div class="value">
+                <input class="input--style-6" type="text" id="title" name="title" placeholder="Title" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="name">Short Summary of Blog</div>
+              <div class="value">
+                <div class="input-group">
+                  <input class="input--style-6" type="text" id="grabber" name="grabber" placeholder="Breif description"
+                    required>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="name">Content</div>
+              <div class="value">
+                <div class="input-group">
+                  <textarea class="textarea--style-6" placeholder="Complete body" id="desc"
+                    name="description"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="name">Upload Thumbnail</div>
+              <div class="value">
+                <div class="input-group js-input-file">
+                  <input class="input-file" type="file" id="file" name="img1">
+                  <label class="label--file" for="file" style="background: rgb(40 135 158); border-radius: 2em;">Choose
+                    file</label>
+                  <span class="input-file__info">No file chosen</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <button class="btn btn--radius-2 btn--blue-2" id="submitBlog" name="submit"
+                style="border:2pxpx solid;border-radius: 2em;border-color:rgb(40 135 158);color:rgb(40 135 158);background-color:white;">Add
+                Blog</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+
+  <script src="assets/js/global.js"></script>
+
+  <script>
+    $(window).on('load', function () { // makes sure the whole site is loaded 
+      $('#status').fadeOut(); // will first fade out the loading animation 
+      $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+      $('body').delay(350).css({ 'overflow': 'visible' });
 
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/clean-blog.js"></script>
+      $(".tox-tinymce").css('width', '100%');
+      $(".tox-tinymce").css('height', '500px');
 
-    <script>
-        var formElement = document.getElementById("contactForm");
-        formElement.addEventListener("submit", function (event) {
-            event.preventDefault();
-            var descriptionTinymce = $("body#tinymce").innerHTML;
+      $(".tox-notifications-container").css("display", "none");
 
-        })
-    </script>
+
+
+    })
+  </script>
 
 </body>
 
-</html>
+<!-- Mirrored from colorlib.com/etc/regform/colorlib-regform-6/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Jan 2022 13:34:23 GMT -->
 
+</html>
 <?php } ?>

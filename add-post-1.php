@@ -12,23 +12,27 @@ if (strlen($_SESSION['login']) == 0) {
         $description = $_POST['description'];
 
         $image1 = $_FILES["img1"]["name"];
-        $status = 0;
-        echo $title;
-        echo $grabber;
-        echo $description;
+        $status = 1;
 
-        move_uploaded_file($_FILES["img1"]["tmp_name"], "assets/img/postimages/" . $_FILES["img1"]["name"]);
+        $temp = explode(".", $_FILES["img1"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $image1 = $newfilename;
 
-        $sql = "INSERT INTO posts(title,grabber,description) VALUES(:title,:grabber,:description)";
+
+        move_uploaded_file($_FILES["img1"]["tmp_name"], "assets/img/postimages/" . $newfilename);
+
+        $sql = "INSERT INTO posts(title,grabber,description,image1,status) VALUES(:title,:grabber,:description,:image1,:status)";
         $query = $dbh->prepare($sql);
         $query->bindParam(':title', $title, PDO::PARAM_STR);
         $query->bindParam(':grabber', $grabber, PDO::PARAM_STR);
         $query->bindParam(':description', $description, PDO::PARAM_STR);
-        // $query->bindParam(':image1', $image1, PDO::PARAM_STR);
+        $query->bindParam(':image1', $image1, PDO::PARAM_STR);
+        $query->bindParam(':status', $status, PDO::PARAM_STR);
         $query->execute();
         $lastInsertId = $dbh->lastInsertId();
         if ($lastInsertId) {
-            echo "<script>alert('Blog submitted successfully, wait for approval'); document.location = 'index.php';</script>";
+            echo "<script>alert('Blog submitted successfully'); document.location = 'manage-posts.php';</script>";
+            // echo "<script>alert($temp[0]);</script>";
         } else {
             echo "<script>alert($title)</script>";
             echo $title;
@@ -55,30 +59,36 @@ if (strlen($_SESSION['login']) == 0) {
 </head>
 
 <body>
+<?php 
+        include('includes/preloader.php')
+    ?>
+    <?php 
+        include('includes/header-admin.php')
+    ?>
 
     <div class="container">
         <h2>Add Post</h2>
         <form id="contactForm" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
+                <label for="exampleFormControlInput1">Title</label>
                 <input class="form-control" id="title" name="title" type="text" placeholder="Default input">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
+                <label for="exampleFormControlInput1">Grabber</label>
                 <input class="form-control" id="grabber" name="grabber" type="text" placeholder="Default input">
             </div>
 
             <div class="form-group">
-                <label for="exampleFormControlFile1">Example file input</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <label for="exampleFormControlFile1">Thumbnail</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="img1">
             </div>
 
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <label for="exampleFormControlTextarea1">Content</label>
                 <textarea class="form-control" id="desc" name="description" rows="3"></textarea>
             </div>
             <div id="success"></div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 250px">
                 <button class="btn btn-primary float-right" id="sendMessageButton" type="submit" name="submit">Post
                 </button>
             </div>
@@ -89,6 +99,15 @@ if (strlen($_SESSION['login']) == 0) {
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/clean-blog.js"></script>
+
+    <script>
+            $(window).on('load', function() { // makes sure the whole site is loaded 
+                $('#status').fadeOut(); // will first fade out the loading animation 
+                $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+                $('body').delay(350).css({'overflow':'visible'});
+                })
+    </script>
+
 </body>
 
 </html>

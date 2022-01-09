@@ -43,6 +43,7 @@ if (strlen($_SESSION['login']) == 0) {
               href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <!--        <script type="text/javascript">-->
         <!--            function valid() {-->
@@ -107,14 +108,20 @@ if (strlen($_SESSION['login']) == 0) {
         </script>
     </head>
 
-    <body>
+    <body style="background: rgb(33 37 41);color:white">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
+    <?php 
+        include('includes/preloader.php')
+    ?>
+    <?php 
+        include('includes/header-admin.php')
+    ?>
+
+        <div class="container" style="margin-top: 50px">
+            <div class="row" style="justify-content:center">
+                <div class="col-xl-5 col-lg-8 col-md-9">
                     <div class="card-box">
-                        <h4 class="m-t-0 header-title"><b>Update Password</b></h4>
-                        <hr/>
+                        <h4 class="m-t-0 header-title text-center"><b>Update Password</b></h4>
 
                         <div class="row">
                             <div class="col-md-10">
@@ -122,8 +129,8 @@ if (strlen($_SESSION['login']) == 0) {
                                       novalidate>
 
                                     <div class="form-group">
-                                        <label for="pass" class="col-md-4 control-label">Current Password</label>
-                                        <div class="col-md-4">
+                                        <label for="pass" class="col-md-12 control-label">Current Password</label>
+                                        <div class="col-md-12">
                                             <input id="pass" type="password" class="form-control" name="password"
                                                    autocomplete="off" required>
                                             <span id="passmsg" style="font-size: 12px;"></span>
@@ -132,8 +139,8 @@ if (strlen($_SESSION['login']) == 0) {
 
 
                                     <div class="form-group">
-                                        <label for="newpass" class="col-md-4 control-label">New Password</label>
-                                        <div class="col-md-4">
+                                        <label for="newpass" class="col-md-12 control-label">New Password</label>
+                                        <div class="col-md-12">
                                             <input id="newpass" type="password" class="form-control" name="newpassword"
                                                    autocomplete="off" onkeyup="checkPass();" required>
                                             <span id="newpassmsg" style="font-size: 12px;"></span>
@@ -142,8 +149,8 @@ if (strlen($_SESSION['login']) == 0) {
 
 
                                     <div class="form-group">
-                                        <label for="confirmpass" class="col-md-4 control-label">Confirm Password</label>
-                                        <div class="col-md-4">
+                                        <label for="confirmpass" class="col-md-12 control-label">Confirm Password</label>
+                                        <div class="col-md-12">
                                             <input id="confirmpass" type="password" class="form-control"
                                                    autocomplete="off" name="confirmpassword" onkeyup="checkPass();" required>
                                             <span id="confirmpassmsg" style="font-size: 12px;"></span>
@@ -152,7 +159,7 @@ if (strlen($_SESSION['login']) == 0) {
 
                                     <div class="form-group">
                                         <div class="col-md-4">
-                                            <button type="submit" id="submit" class="btn btn-danger float-right" name="submit">Submit</button>
+                                            <button type="submit" id="submit" class="btn btn-danger float-right" style="border-radius: 2em" name="submit">Submit</button>
                                         </div>
                                     </div>
 
@@ -175,6 +182,14 @@ if (strlen($_SESSION['login']) == 0) {
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/clean-blog.js"></script>
+        <script>
+
+            $(window).on('load', function () { // makes sure the whole site is loaded 
+                $('#status').fadeOut(); // will first fade out the loading animation 
+                $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+                $('body').delay(350).css({ 'overflow': 'visible' });
+            })
+            </script>
     </body>
 
     </html>

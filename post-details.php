@@ -39,9 +39,17 @@ if (isset($_POST['submit'])) {
           href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://kit.fontawesome.com/99d1df08d7.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body>  
+    <?php 
+        include('includes/preloader.php')
+    ?>
+<?php 
+    include('includes/header.php')
+  ?>
 
     <?php
     $id = intval($_GET['id']);
@@ -62,16 +70,15 @@ if (isset($_POST['submit'])) {
     ?>
     
 
-        <article>
-            <div class="container">
+        <article style="margin-top: 80px">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10 col-lg-8 mx-auto">
 
                         <div class="post-preview">
                             <h2 class="post-title"><?php echo htmlentities($result->title); ?></h2>
-                            <p class="post-meta">Category: <?php echo htmlentities($result->catname); ?><br>
-                                                 Posted
-                                                 by&nbsp;<b><?php echo htmlentities($result->username); ?></b>
+                            <p class="post-meta"> Posted by admin
+                                                 </b>
                                                  on <?php echo htmlentities($result->creationdate); ?>
                             </p>
                             <p style="font-weight: bold;"><?php echo htmlentities($result->grabber); ?></p>
@@ -81,7 +88,7 @@ if (isset($_POST['submit'])) {
                                         src="assets/img/postimages/<?php echo htmlentities($result->image1); ?>"
                                         width="auto" height="auto" style="border:solid 1px #000"></p>
                             <?php } ?>
-                            <p style="text-align: justify;"><?php echo htmlentities($result->description); ?></p>
+                            <p style="text-align: justify;"><?php echo ($result->description); ?></p>
                             <p class="post-meta">Posted by&nbsp;<?php echo htmlentities($result->username); ?>
                                                  on <?php echo htmlentities($result->creationdate); ?>
                             </p>
@@ -95,11 +102,24 @@ if (isset($_POST['submit'])) {
                     
                 </div>
         </article>
-
+        <?php 
+    include('includes/footer.php')
+  ?>
+  <?php 
+    include('includes/header1.php')
+  ?>
 
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/clean-blog.js"></script>
+        <script>
+            $(window).on('load', function() { // makes sure the whole site is loaded 
+                $('#status').fadeOut(); // will first fade out the loading animation 
+                $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+                $('body').delay(350).css({'overflow':'visible'});
+                })
+        </script>
+
 </body>
 
 </html>
